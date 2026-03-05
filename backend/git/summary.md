@@ -158,3 +158,120 @@ git reset [id_commit ] : le head se positionne sur id_commit
 --mixed ( par défaut ) : reset index
 --soft : non
 --hard : reset index + working copy
+
+
+git tags ( liste des tags )
+
+git tag -a nom_du_tag -m "message" ( créer un tag )
+
+checkout possible avec tag ( car c une référence vers un commit / aussi les notations tag^^ tag~)
+
+
+
+reflog :
+enregistre tous les mouvements de head ( recuperation max 30 jours )
+
+git reflog ( affiche l historique des positions de head)
+
+git reset --hard HEAD@{n} ( pour revenir par exemple vers un commit supprimé)
+
+
+
+merge 
+
+fast forward ( A - B / A - B - C -D  ==> A - B - C - D)
+non fast forward ( A - B - C / A - B - E - D ==> A - B - M commit de merge )
+
+conflit ( exemple modification de la même ligne) :
+modifiy file -> git add file -> git commit
+git mergetool ( outil graphique )
+git merge --abort ( annule merge)
+git reset --hard HEAD^ (revient a l etat avant merge)
+
+git merge feature --no-ff (git force la création d'un commit de merge)
+A - B / A - B - C - D ==> A - B - M
+
+
+
+rebase ( prendre les commits d'une branche et les rejouer après une autre branche )
+git checkout branch1 ( A - B - C - D )
+git rebase master ( A - B - E - F)
+==> prendre les commits de branch1 et les mettre au dessus de master ( A - B - E - F - C' - D') 
+
+
+difference entre merge et rebase :
+git rebase master ( mettre à jour une branche )
+git merge feature ( fusionner une feature )
+
+
+fork ( copie du repo read only dans le compte du dev)
+heroku ( exemple pour déployer un code )
+
+
+
+bare repo ( repo sans fichiers de projet working copy : .git contents only )
+git init --bare ( crée project.git sans working directory)
+git clone --bare <url> ( clone un repo sans fichiers du projet)
+
+
+remote branch
+git branch -a ( liste les branches locales et remotes)
+
+git fetch <remote> ( télécharge les nouvelles infos du repo distant : commits , branches , mise a jour des branches mais ne modifie pas code local)
+pull = fetch + merge
+
+
+fetch + rebase === git pull --release
+
+git push
+git status
+
+git push nom_remote id_commit: nom_branche_remote ( par défaut git push publie jusqu au dernier commit + ici on publie jusqu a un commit)
+
+git push -f 
+explication : avec git push
+repo distant : A - B - C 
+repo local : A - B - D
+==> git refuse car c diff de d
+avec -f : repo distant A - B - D
+alternative : git revert ( annule commit sans modifier historique )
+
+
+comment créer branche remote ?
+git checkout -b mabranche
+git push -u origin maBranche ( -u == --set-upstream ca crée un lien entre la branche locale ela branche distante )
+
+git checkout --track origin/nombranche ( cree nombranche comme branche locale et liée à origin/payment )
+
+git push nomRemote :nomBranche ( supprimer branche distante )
+
+git push nomremote nomtag( publier tag sur serveur)
+
+git revert id_commit ( annule modif du commit)
+
+git blame file ( indiquer auteur de chaque ligne de file )
+
+git stash ( git cache les modifs et remets dans l etat du dernier commit , ex: changement de branche )
+
+git stash list ( affiche la liste des stash )
+
+git stash pop stash@{1} ( supprime la stash )
+
+bisect ( si dev ne sait pas quelle version precise a commit le bug mais on sait 2 good and bad)
+git bisect start ( démarre)
+git bisect good <ref>
+git bisect bad <ref>
+git bisect skip <ref>
+git bisect visualize ( affiohe les suspects restants )
+
+git grep <texte> <ref>
+
+git add -p ( plsrs modifs dans un modif que dev pour une partie pour un commit et une atre pour un autre commit )
+git gui ( interface pour selectionner des hunks)
+
+git cheery-pick <commit> ( pour recuperer un commit precis contrairement à merge ou rebase )
+
+git format-patch -<nombre_commits> (creer patch : fichier qui contient les différenes entre 2 versions , si avec nombre_commit ca prepare nombre_commit patches )
+git apply patchfile.patch ( recuperer les modifs )
+
+
