@@ -118,27 +118,34 @@ repo c le dossier .git
 
 working copy / working tree
 
-git checkout -- <file > : annule les modifs d un fichier
+git checkout -- <file > : annule les modifs d un fichier dans working directory
 
 git commit -a -m "message"
 
-git commit --amend
+git commit --amend : corrige commit précédent
 
-git log  -n -p --oneline
+git log  -n -p --oneline : affiche les ID des commits, messages et modif ( n commits / p pour afficher diff avec le commit précédent / oneline 1 ligne ID et message )
 
-git show --stat
+git show --stat : affiche les infos du dernier commit ( star : affiche les changements )
 
-git diff [id_commit]
+git diff [id_commit] : difference entre working copy et commit
 
-id_commit^
-id_commit^^
-id_commit~n
-id_commit^2
-id_commit1..id_commit2
+id_commit^ : parent
+id_commit^^ : grand-père
+id_commit~n : n ieme ancetre
+id_commit^2 : 2eme parent
+git log id_commit1..id_commit2 : liste des commits entre les 2 (commit2 inclus)
+
+
+==========
+TP commits
+===========
+
+
 
 feature branch
 
-git branch
+git branch : liste des branches
 
 git checkout -b <nom-branche> : création + se positionner dessus
 
@@ -153,7 +160,7 @@ git checkout <ref> : branche , tag , commit ...
 
 git checkout ne fontionne pas si des fichiers non commités modifiés
 
-git reset ( reset index et working copy )
+git reset
 git reset [id_commit ] : le head se positionne sur id_commit 
 --mixed ( par défaut ) : reset index
 --soft : non
@@ -166,6 +173,10 @@ git tag -a nom_du_tag -m "message" ( créer un tag )
 
 checkout possible avec tag ( car c une référence vers un commit / aussi les notations tag^^ tag~)
 
+
+============
+TP branches / checkout / reset / tags
+=============
 
 
 reflog :
