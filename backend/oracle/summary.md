@@ -201,8 +201,25 @@ SYNONYMES :
 
 PRIVILEGES :
 
+    GRANT <privilege>[ou ALL] ON <no_objet> TO <nom_usager> [ou PUBLIC][WITH GRANT OPTION] 
 
+    REVOKE <privilege>[ou ALL] ON <no_objet> FROM <nom_usager> [ou PUBLIC] 
 
+    CREATE ROLE <nom_du_role>
 
+    GRANT <privileges> ON <nom_objet>TO <nom_role> 
 
+    GRANT <nom_role> TO <nom_usager>
+
+TRANSACTIONS :
+
+    COMMIT : confirmer une modif ( INSERT UPDATE DELETE ) ou une transaction ( série de commandes de manipulation de données depuis le dernier COMMIT ) sur la bd
+    
+    ROLLBACK [TO nom_save_point] : annule une transaction COMMIT
+    
+    SAVEPOINT nom_savepoint : fixe des points de sauvegarde
+
+Autres commandes : SHOW / DESCRIBE / DESC / CONCAT /
+
+PLSQL :
 
